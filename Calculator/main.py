@@ -1,33 +1,30 @@
 import tkinter as tk
 
-calcultion = ""
+calculation = ""
 
 def add_to_calculation(symbol):
-    global calcultion
-    calcultion += str(symbol)
+    global calculation
+    calculation += str(symbol)
     text_result.delete(1.0, "end")
-    text_result.insert(1.0, calcultion)
-    
+    text_result.insert(1.0, calculation)
 
 def evaluate_calculation():
-    global calcultion
+    global calculation
     try:
-        calcultion = str(eval(calcultion))
+        calculation = str(eval(calculation))
         text_result.delete(1.0, "end")
-        text_result.insert(1.0, calcultion)
+        text_result.insert(1.0, calculation)
     except:
         clear_field()
         text_result.insert(1.0, "Error")
-        
 
 def clear_field():
     global calculation
     calculation = ""
     text_result.delete(1.0, "end")
-    pass
-
 
 root = tk.Tk()
+root.title("Simple Calculator")
 root.geometry("300x275")
 
 text_result = tk.Text(root, height=2, width=16, font=("Arial", 24))
@@ -69,6 +66,5 @@ btn_clear = tk.Button(root, text="C", command=clear_field, width=11, font=("Aria
 btn_clear.grid(row=6, column=1, columnspan=2)
 btn_equal = tk.Button(root, text="=", command=evaluate_calculation, width=11, font=("Arial", 14))
 btn_equal.grid(row=6, column=3, columnspan=2)
-
 
 root.mainloop()
